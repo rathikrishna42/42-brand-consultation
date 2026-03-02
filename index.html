@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Brand Consultation | 42 Creative Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-sm tracking-widest uppercase font-semibold text-zinc-100">
+                42 Creative Media
+            </div>
+            <button onclick="scrollToForm()" class="hidden md:flex items-center gap-2 text-sm uppercase tracking-wider font-medium text-zinc-100 hover:text-zinc-400 transition-colors">
+                Request Invitation <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-40 pb-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-zinc-900/50 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <p class="text-zinc-400 uppercase tracking-[0.2em] text-sm mb-6">
+                We study business challenges before designing branding solutions
+            </p>
+            <h1 class="text-5xl md:text-7xl font-serif text-zinc-100 mb-8 leading-tight tracking-tight">
+                Strategic Brand <br/><span class="italic text-zinc-500">Consultation.</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-zinc-400 mb-12">
+                Request-Based. Expert-Led. By Invitation.
+            </p>
+
+            <div class="flex flex-col items-center gap-6 mb-16">
+                <div class="inline-block border border-zinc-800 rounded-full px-6 py-2 bg-zinc-900/50 backdrop-blur-sm">
+                    <span class="text-sm font-medium tracking-wide text-zinc-300">
+                        Led by <strong class="text-zinc-100">Krishna Rathi</strong>
+                    </span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm md:text-base text-zinc-500 uppercase tracking-wider font-medium">
+                    <span>2000+ Strategies</span>
+                    <span class="hidden md:inline">•</span>
+                    <span>400+ Brands Built</span>
+                    <span class="hidden md:inline">•</span>
+                    <span>124+ Trending Campaigns</span>
+                </div>
+            </div>
+
+            <button onclick="scrollToForm()" class="bg-zinc-100 text-zinc-950 px-8 py-4 rounded-none text-sm uppercase tracking-widest font-bold hover:bg-zinc-300 transition-colors duration-300">
+                Request an Assessment
+            </button>
+        </div>
+    </header>
+
+    <!-- The Thesis -->
+    <section class="py-24 px-6 bg-zinc-900/20 border-y border-zinc-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-serif text-zinc-100 mb-8">
+                Brand is not decoration.
+            </h2>
+            <p class="text-xl md:text-2xl leading-relaxed font-light text-zinc-400">
+                It is <strong class="text-zinc-100 font-normal">defense</strong>. 
+                It is <strong class="text-zinc-100 font-normal">differentiation</strong>. 
+                It is the only moat that cannot be copied overnight.
+            </p>
+        </div>
+    </section>
+
+    <!-- Qualification Criteria -->
+    <section class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Do You Belong Here?</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-sm">High-Stakes Environments Only</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
+                    <i data-lucide="shield" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
+                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Preparing for IPO</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Your company needs institutional-grade brand architecture that can withstand intense public market scrutiny.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
+                    <i data-lucide="trending-up" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
+                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Valuation &gt; ₹100 Crore</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Your valuation has scaled, but your brand still looks like a startup. Investors, customers, and talent notice the gap.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
+                    <i data-lucide="refresh-cw" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
+                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">High-Stakes Rebrand</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        You are planning a rebrand and the stakes are too high to experiment. One wrong move costs market position, trust, and revenue.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
+                    <i data-lucide="alert-octagon" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
+                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Failed by Agencies</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Multiple agencies have failed you. You need a partner who understands business fundamentals first, and design second.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-sm text-zinc-500 italic">
+                If none of these apply, this consultation is not for you.
+            </div>
+        </div>
+    </section>
+
+    <!-- Anti-Pitch / Disqualification -->
+    <section class="py-24 px-6 bg-zinc-100 text-zinc-950">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-serif mb-12 text-center">What This Is Not.</h2>
+            
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold uppercase tracking-wider mb-1">Not a Sales Pitch</h4>
+                        <p class="text-zinc-700">This is a diagnostic process. We do not sell. We assess.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold uppercase tracking-wider mb-1">Not for Early-Stage</h4>
+                        <p class="text-zinc-700">Not for startups still testing product-market fit. This is for established entities.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold uppercase tracking-wider mb-1">Not Cheap or Templated</h4>
+                        <p class="text-zinc-700">Not for companies looking for fast, budget-friendly, or generic solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-10 border-t border-zinc-300 text-center">
+                <p class="text-2xl font-serif">
+                    This is for <strong class="font-bold">Founders</strong> who know the cost of getting brand wrong.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Framework (Animated Timeline) -->
+    <section class="py-32 px-6 overflow-hidden" id="framework-section">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-24 text-center">
+                <h2 class="text-3xl font-serif text-zinc-100 mb-4">The ABC Framework</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-sm">A diagnostic process. Not a sales process.</p>
+            </div>
+
+            <div class="relative pl-6 md:pl-0">
+                <!-- Vertical Background Line -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-800 md:-translate-x-1/2"></div>
+                <!-- Animated Progress Line -->
+                <div id="timeline-progress" class="absolute left-6 md:left-1/2 top-0 w-[2px] bg-zinc-100 md:-translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300 ease-out" style="height: 0%;"></div>
+
+                <!-- A: Audit of Brand -->
+                <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+                    
+                    <!-- Desktop Left Content (Text) -->
+                    <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
+                        <div>
+                            <i data-lucide="search" class="w-8 h-8 text-zinc-400 ml-auto mb-6"></i>
+                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Audit of Brand</h3>
+                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What we examine</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Node -->
+                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                        A
+                    </div>
+
+                    <!-- Right Content (Card) -->
+                    <div class="w-full md:w-1/2 pl-12 md:pl-16">
+                        <!-- Mobile Text Header -->
+                        <div class="md:hidden mb-6">
+                            <i data-lucide="search" class="w-6 h-6 text-zinc-400 mb-4"></i>
+                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Audit of Brand</h3>
+                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What we examine</p>
+                        </div>
+                        
+                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
+                            <ul class="space-y-4 text-sm text-zinc-400 mb-8">
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Architecture & positioning</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Differentiation gaps</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Internal alignment vs reality</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Perception vs intention</li>
+                            </ul>
+                            <div class="pt-6 border-t border-zinc-800">
+                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Clear diagnosis. What works. What fails. What is missing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B: Brand Brief -->
+                <div class="timeline-item relative flex flex-col md:flex-row-reverse justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+                    
+                    <!-- Desktop Right Content (Text) -->
+                    <div class="hidden md:flex md:w-1/2 justify-start pl-16 text-left">
+                        <div>
+                            <i data-lucide="file-text" class="w-8 h-8 text-zinc-400 mr-auto mb-6"></i>
+                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Brand Brief</h3>
+                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What we deliver</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Node -->
+                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                        B
+                    </div>
+
+                    <!-- Left Content (Card) -->
+                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-16 md:text-right">
+                        <!-- Mobile Text Header -->
+                        <div class="md:hidden mb-6">
+                            <i data-lucide="file-text" class="w-6 h-6 text-zinc-400 mb-4"></i>
+                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Brand Brief</h3>
+                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What we deliver</p>
+                        </div>
+
+                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors text-left">
+                            <ul class="space-y-4 text-sm text-zinc-400 mb-8 md:flex md:flex-col md:items-end">
+                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Transformation scope</li>
+                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Messaging framework</li>
+                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Visual identity direction</li>
+                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Market implications & milestones</li>
+                            </ul>
+                            <div class="pt-6 border-t border-zinc-800">
+                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Your brand roadmap. Documented. Actionable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C: Consultation -->
+                <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+                    
+                    <!-- Desktop Left Content (Text) -->
+                    <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
+                        <div>
+                            <i data-lucide="user-check" class="w-8 h-8 text-zinc-100 ml-auto mb-6"></i>
+                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Consultation</h3>
+                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What happens</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Node -->
+                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                        C
+                    </div>
+
+                    <!-- Right Content (Card) -->
+                    <div class="w-full md:w-1/2 pl-12 md:pl-16">
+                        <!-- Mobile Text Header -->
+                        <div class="md:hidden mb-6">
+                            <i data-lucide="user-check" class="w-6 h-6 text-zinc-100 mb-4"></i>
+                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Consultation</h3>
+                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What happens</p>
+                        </div>
+
+                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
+                            <ul class="space-y-4 text-sm text-zinc-400 mb-8">
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Personal review by Krishna Rathi</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Discussion of strategic options</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Validation of business case</li>
+                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Expert recommendation</li>
+                            </ul>
+                            <div class="pt-6 border-t border-zinc-800">
+                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Clear recommendation. Full build, mentorship, or alternative path.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Investment (Bento Grid) -->
+    <section class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Strategic Investment</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-sm">The parameters of engagement</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Diagnostic Step (Large Block) -->
+                <div class="md:col-span-2 bg-zinc-100 text-zinc-950 p-10 md:p-14 flex flex-col justify-center">
+                    <h3 class="text-2xl md:text-3xl font-serif mb-6">A Diagnostic Step</h3>
+                    <p class="text-zinc-700 leading-relaxed mb-8 text-lg md:text-xl">
+                        This is a diagnostic consultation. If we determine FourTwo is the right partner for your transformation, a separate engagement proposal follows.
+                    </p>
+                    <p class="text-sm font-bold uppercase tracking-widest text-zinc-500">
+                        We work with businesses where brand decisions carry consequences.
+                    </p>
+                </div>
+
+                <!-- Timeline (Small Block) -->
+                <div class="bg-zinc-900/30 border border-zinc-800 p-8 flex flex-col justify-center">
+                    <i data-lucide="clock" class="w-6 h-6 text-zinc-500 mb-8"></i>
+                    <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-3">Timeline</h4>
+                    <p class="text-2xl font-serif text-zinc-100 mb-2">7 - 14 Days</p>
+                    <p class="text-sm text-zinc-400">from commencement.</p>
+                    <div class="mt-8 pt-6 border-t border-zinc-800">
+                        <p class="text-xs text-zinc-500 italic">Waiting Period applies due to limited availability.</p>
+                    </div>
+                </div>
+
+                <!-- Format (Small Block) -->
+                <div class="bg-zinc-900/30 border border-zinc-800 p-8 flex flex-col justify-center">
+                    <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-6">Consultation Format</h4>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="globe" class="w-5 h-5 text-zinc-400 shrink-0 mt-0.5"></i>
+                            <p class="text-zinc-300 text-sm leading-relaxed">Private online consultations for founders across India, Dubai, Singapore, and global markets.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-zinc-400 shrink-0 mt-0.5"></i>
+                            <p class="text-zinc-300 text-sm leading-relaxed">Exclusive one-to-one sessions available in Pune by appointment only.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment (Large Block) -->
+                <div class="md:col-span-2 bg-zinc-900/50 border border-zinc-800 p-10 md:p-14 flex flex-col justify-center relative overflow-hidden group hover:bg-zinc-900/80 transition-colors">
+                    <div class="absolute -right-12 -bottom-12 opacity-[0.03] transition-transform duration-700 group-hover:scale-110">
+                        <i data-lucide="briefcase" class="w-80 h-80"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-6">Investment</h4>
+                        <p class="text-zinc-300 mb-8 max-w-xl text-lg md:text-xl leading-relaxed">
+                            The consultation fee is variable and depends on business complexity, audit scope, and strategic depth required.
+                        </p>
+                        <div class="inline-block border-l-2 border-zinc-100 pl-6 py-2">
+                            <p class="text-2xl font-serif text-zinc-100">Fee communicated after initial review.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="request-form" class="py-24 px-6 relative">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Request a Consultation</h2>
+                <p class="text-zinc-400">Reviewed within 48 hours. If accepted, you receive confirmation with fee, timeline, and next steps.</p>
+            </div>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="success-message" class="hidden bg-zinc-900/50 border border-zinc-800 p-12 text-center">
+                <i data-lucide="check-circle-2" stroke-width="1" class="w-16 h-16 text-zinc-100 mx-auto mb-6"></i>
+                <h3 class="text-2xl font-serif text-zinc-100 mb-4">Request Received</h3>
+                <p class="text-zinc-400">Your information has been securely submitted. Our team will review your details and respond within 48 hours.</p>
+            </div>
+
+            <!-- Form -->
+            <div id="form-container">
+                <form id="consultation-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Full Name</label>
+                            <input required type="text" name="name" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Work Email</label>
+                            <input required type="email" name="email" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Company Name</label>
+                            <input required type="text" name="company" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Current Valuation / ARR</label>
+                            <input required type="text" name="valuation" placeholder="e.g. ₹100Cr+ / $15M" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm text-zinc-400 uppercase tracking-wider">Reason for Consultation</label>
+                        <textarea required name="reason" rows="4" placeholder="What is the high-stakes brand challenge you are facing?" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700 resize-none"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm text-zinc-400 uppercase tracking-wider">Timeline & Stakeholders</label>
+                        <input required type="text" name="timeline" placeholder="Who is involved and what is your desired timeline?" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700" />
+                    </div>
+
+                    <button id="submit-btn" type="submit" class="w-full bg-zinc-100 text-zinc-950 py-4 font-bold uppercase tracking-widest text-sm hover:bg-zinc-300 transition-colors disabled:opacity-50">
+                        Submit Request
+                    </button>
+                    
+                    <p class="text-center text-xs text-zinc-600 uppercase tracking-widest mt-4">
+                        This consultation is selective.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-900 py-12 px-6 text-center">
+        <h2 class="text-2xl font-serif text-zinc-500 mb-8 italic">
+            "If you belong here, you know it."
+        </h2>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-zinc-600 uppercase tracking-wider">
+            <span>42 Creative Media Pvt. Ltd.</span>
+            <span class="hidden md:inline">•</span>
+            <span>Pune, India</span>
+            <span class="hidden md:inline">•</span>
+            <span>Global Consultations Available</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scroll to form
+        function scrollToForm() {
+            document.getElementById('request-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Timeline Scroll Animation Logic
+        const timelineProgress = document.getElementById('timeline-progress');
+        const frameworkSection = document.getElementById('framework-section');
+
+        window.addEventListener('scroll', () => {
+            if (!frameworkSection || !timelineProgress) return;
+            
+            const rect = frameworkSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Start the line animation when the top of the framework section reaches the middle of the viewport
+            let startTrigger = rect.top - (windowHeight / 2);
+            let totalScrollable = rect.height * 0.7; // Complete line slightly before the end of section
+            
+            if (startTrigger < 0) {
+                let progress = Math.min(100, Math.max(0, (-startTrigger / totalScrollable) * 100));
+                timelineProgress.style.height = `${progress}%`;
+            } else {
+                timelineProgress.style.height = `0%`;
+            }
+        });
+
+        // Intersection Observer for Timeline Node & Content Reveal
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -25% 0px', // Trigger slightly before it hits the bottom
+            threshold: 0.1
+        };
+
+        const timelineObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Reveal content
+                    entry.target.classList.remove('opacity-0', 'translate-y-12');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    
+                    // Highlight node
+                    const node = entry.target.querySelector('.timeline-node');
+                    if (node) {
+                        node.classList.replace('border-zinc-800', 'border-zinc-100');
+                        node.classList.replace('text-zinc-400', 'text-zinc-950');
+                        node.classList.replace('bg-zinc-950', 'bg-zinc-100');
+                        // Add glow
+                        node.classList.add('shadow-[0_0_15px_rgba(255,255,255,0.4)]');
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // Handle form submission state
+        const form = document.getElementById('consultation-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Set loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Submitting...';
+            
+            // Simulate API call and transition to success state
+            setTimeout(() => {
+                formContainer.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
