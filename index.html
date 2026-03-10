@@ -49,6 +49,21 @@
             display: inline-block;
             line-height: 1.2;
         }
+
+        /* Mobile specific reveal classes for touch interaction */
+        @media (hover: none) {
+            .mobile-reveal .mobile-front {
+                transform: translateY(-2.5rem) scale(0.95);
+                opacity: 0;
+            }
+            .mobile-reveal .mobile-back {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            .mobile-reveal .mobile-glow {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-slate-600 selection:bg-[#40E0D0]/30 selection:text-slate-900 caret-[#40E0D0]">
@@ -177,14 +192,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:auto-rows-[360px]">
                 
                 <!-- Card 1 (Wide Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="sparkles" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Building Brand<br/>From Scratch</h3>
@@ -193,7 +208,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="w-full">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">RAVE – Hydration Drink</h4>
@@ -205,14 +220,14 @@
                 </div>
 
                 <!-- Card 2 (Tall Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 lg:row-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 lg:row-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="shield" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Preparing<br/>For IPO</h3>
@@ -221,7 +236,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="w-full">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Mobavenue AI Tech Limited</h4>
@@ -233,14 +248,14 @@
                 </div>
 
                 <!-- Card 3 (Square Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="refresh-cw" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">High Stakes<br/>Rebrand</h3>
@@ -249,7 +264,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="w-full">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Chai Sutta Bar</h4>
@@ -261,14 +276,14 @@
                 </div>
 
                 <!-- Card 4 (Square Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="trending-up" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Started with Boom,<br/>Stuck with Scaling</h3>
@@ -277,7 +292,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="w-full">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Gatti Chutney</h4>
@@ -289,14 +304,14 @@
                 </div>
 
                 <!-- Card 5 (Square Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="history" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Tradition to<br/>Modern Business</h3>
@@ -305,7 +320,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="w-full">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Silveransh</h4>
@@ -317,14 +332,14 @@
                 </div>
 
                 <!-- Card 6 (Wide Block) -->
-                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200">
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200" onclick="toggleCardReveal(this)">
                     <!-- Subtle background glow on hover -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="mobile-glow absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                     <!-- Front State -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                    <div class="mobile-front absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 md:group-hover:-translate-y-10 md:group-hover:scale-95 md:group-hover:opacity-0 pointer-events-none">
                         <div>
-                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 md:group-hover:scale-75 md:group-hover:-rotate-6 shadow-inner">
                                 <i data-lucide="alert-octagon" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
                             </div>
                             <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Failed by Multiple<br/>Agencies</h3>
@@ -333,7 +348,7 @@
                     </div>
                     
                     <!-- Hover Reveal State (Case Study) -->
-                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                    <div class="mobile-back absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:opacity-100 z-20 pointer-events-none">
                         <div class="max-w-xl">
                             <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
                             <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">JK Shah Classes</h4>
@@ -729,6 +744,21 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        }
+
+        // Card Toggle Logic for Mobile
+        function toggleCardReveal(element) {
+            // Only execute if it's a touch device / narrow screen
+            if (window.innerWidth < 768) {
+                // Remove active class from all other cards first
+                const allCards = document.querySelectorAll('.mobile-reveal');
+                allCards.forEach(card => {
+                    if (card !== element) card.classList.remove('mobile-reveal');
+                });
+                
+                // Toggle the clicked card
+                element.classList.toggle('mobile-reveal');
+            }
         }
 
         // Smooth scroll to form
