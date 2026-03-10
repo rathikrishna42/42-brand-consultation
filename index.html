@@ -7,442 +7,715 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
         }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Premium Reveal on Scroll Animation */
+        .reveal {
+            opacity: 0;
+        }
+        .reveal.active {
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .anim-delay-100 { animation-delay: 100ms; }
+        .anim-delay-200 { animation-delay: 200ms; }
+        .anim-delay-300 { animation-delay: 300ms; }
+        .anim-delay-400 { animation-delay: 400ms; }
+        
+        /* Custom highlight utility class mimicking text selection */
+        .txt-highlight {
+            background-color: rgba(64, 224, 208, 0.3);
+            color: #0f172a; /* slate-900 */
+            padding: 0 0.25rem;
+            border-radius: 0.125rem;
+            display: inline-block;
+            line-height: 1.2;
         }
     </style>
 </head>
-<body class="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white">
+<body class="min-h-screen bg-white text-slate-600 selection:bg-[#40E0D0]/30 selection:text-slate-900 caret-[#40E0D0]">
 
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900">
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-sm tracking-widest uppercase font-semibold text-zinc-100">
-                42 Creative Media
+            <div class="flex items-center gap-3">
+                <!-- 42 Creative Media Logo -->
+                <img src="https://res.cloudinary.com/dj159rgsr/image/upload/v1773137385/42-Logo-dark-PNG-e1708085138506_lfazgy.png" alt="42 Creative Media Logo" class="h-7 w-auto object-contain">
+                <div class="text-lg font-medium tracking-tight text-slate-900 hidden sm:block">
+                    42 Creative Media Pvt. Ltd.
+                </div>
             </div>
-            <button onclick="scrollToForm()" class="hidden md:flex items-center gap-2 text-sm uppercase tracking-wider font-medium text-zinc-100 hover:text-zinc-400 transition-colors">
-                Request Invitation <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-light text-slate-600">
+                <a href="#" class="hover:text-slate-900 transition-colors">About Us</a>
+                <a href="#framework-section" class="hover:text-slate-900 transition-colors">Framework</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Portfolio</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                <!-- CTA Button (Visible on all screens) -->
+                <button onclick="scrollToForm()" class="flex items-center justify-center bg-black text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium hover:bg-slate-800 transition-colors">
+                    Get in Touch
+                </button>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden flex items-center justify-center text-slate-900 focus:outline-none">
+                    <i data-lucide="menu" stroke-width="2" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xl px-6 py-6 flex flex-col gap-6">
+            <a href="#" onclick="toggleMobileMenu()" class="text-slate-800 font-medium text-lg">About Us</a>
+            <a href="#framework-section" onclick="toggleMobileMenu()" class="text-slate-800 font-medium text-lg">Framework</a>
+            <a href="#" onclick="toggleMobileMenu()" class="text-slate-800 font-medium text-lg">Portfolio</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-40 pb-24 px-6 relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-zinc-900/50 blur-[120px] rounded-full pointer-events-none"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <p class="text-zinc-400 uppercase tracking-[0.2em] text-sm mb-6">
-                We study business challenges before designing branding solutions
-            </p>
-            <h1 class="text-5xl md:text-7xl font-serif text-zinc-100 mb-8 leading-tight tracking-tight">
-                Strategic Brand <br/><span class="italic text-zinc-500">Consultation.</span>
-            </h1>
-            <p class="text-xl md:text-2xl font-light text-zinc-400 mb-12">
-                Request-Based. Expert-Led. By Invitation.
-            </p>
-
-            <div class="flex flex-col items-center gap-6 mb-16">
-                <div class="inline-block border border-zinc-800 rounded-full px-6 py-2 bg-zinc-900/50 backdrop-blur-sm">
-                    <span class="text-sm font-medium tracking-wide text-zinc-300">
-                        Led by <strong class="text-zinc-100">Krishna Rathi</strong>
-                    </span>
-                </div>
+    <!-- Hero Section (Redesigned Layout) -->
+    <header class="min-h-[95vh] flex items-center pt-32 pb-20 px-6 md:px-12 relative overflow-hidden bg-white">
+        <!-- Abstract gradient background element - very subtle -->
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-slate-100/60 via-slate-50/20 to-transparent rounded-full blur-3xl -translate-y-1/4 translate-x-1/4 pointer-events-none"></div>
+        
+        <div class="w-full max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-center relative z-10">
+            <!-- Left: Typography & CTA (spans 7 cols) -->
+            <div class="lg:col-span-7 flex flex-col items-start text-left">
                 
-                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm md:text-base text-zinc-500 uppercase tracking-wider font-medium">
-                    <span>2000+ Strategies</span>
-                    <span class="hidden md:inline">•</span>
-                    <span>400+ Brands Built</span>
-                    <span class="hidden md:inline">•</span>
-                    <span>124+ Trending Campaigns</span>
+                <h1 class="text-5xl md:text-6xl lg:text-[5rem] leading-[1.1] tracking-tight mb-6 text-slate-800 reveal">
+                    <span class="font-light text-slate-400">Strategic Brand</span> <br/>
+                    <span class="font-medium">Consultation.</span>
+                </h1>
+
+                <div class="mb-10 reveal anim-delay-100">
+                    <div class="mb-4">
+                        <span class="text-sm font-medium text-slate-500 uppercase tracking-widest">1:1 with <span class="txt-highlight font-semibold">Krishna Rathi</span></span>
+                    </div>
+                    
+                    <p class="text-lg md:text-xl text-slate-500 max-w-lg leading-relaxed font-light">
+                        This consultation is designed & focused on providing clarity to founders and brands ready to scale.
+                    </p>
                 </div>
+
+                <button onclick="scrollToForm()" class="group flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-slate-800 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] reveal anim-delay-200">
+                    Get Started Now
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                </button>
             </div>
 
-            <button onclick="scrollToForm()" class="bg-zinc-100 text-zinc-950 px-8 py-4 rounded-none text-sm uppercase tracking-widest font-bold hover:bg-zinc-300 transition-colors duration-300">
-                Request an Assessment
-            </button>
+            <!-- Right: Sleek, Professional Stats Grid (spans 5 cols) -->
+            <div class="lg:col-span-5 grid grid-cols-2 gap-5 relative w-full max-w-lg mx-auto lg:max-w-none lg:mx-0">
+                <!-- Decorative element -->
+                <i data-lucide="plus" stroke-width="1.5" class="absolute -top-8 -left-8 w-6 h-6 text-slate-300 reveal anim-delay-400"></i>
+                <i data-lucide="plus" stroke-width="1.5" class="absolute -bottom-8 -right-8 w-6 h-6 text-slate-300 hidden lg:block reveal anim-delay-400"></i>
+
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-center transform lg:translate-y-8 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] duration-500 reveal anim-delay-200">
+                    <span class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em] mb-1">Trusted By</span>
+                    <span class="text-4xl md:text-5xl font-light text-slate-800 tracking-tight"><span class="counter" data-target="400">0</span><span class="text-slate-300">+</span></span>
+                    <span class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em] mt-1">Brands</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-center transform transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] duration-500 reveal anim-delay-300">
+                    <span class="text-4xl md:text-5xl font-light text-slate-800 mb-2 tracking-tight"><span class="counter" data-target="2000">0</span><span class="text-slate-300">+</span></span>
+                    <span class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Strategies Deployed</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-span-2 bg-slate-50/50 p-8 rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-row items-center justify-between transform lg:translate-y-8 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] duration-500 backdrop-blur-sm reveal anim-delay-400">
+                    <div class="flex flex-col">
+                        <span class="text-4xl md:text-5xl font-light text-slate-800 mb-2 tracking-tight"><span class="counter" data-target="10">0</span><span class="text-slate-300">+</span> <span class="text-2xl text-slate-400 font-light">Years</span></span>
+                        <span class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Of Brand Consulting Experience</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-slate-50 shrink-0">
+                        <i data-lucide="award" stroke-width="1.5" class="w-5 h-5 text-slate-600"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- The Thesis -->
-    <section class="py-24 px-6 bg-zinc-900/20 border-y border-zinc-900">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-serif text-zinc-100 mb-8">
-                Brand is not decoration.
+    <section class="py-24 px-6 border-y border-slate-100 bg-slate-50">
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-tight leading-snug reveal">
+                Deconstructing your <br class="hidden md:block" />
+                <span class="txt-highlight font-medium">past, present & future</span> brand decisions.
             </h2>
-            <p class="text-xl md:text-2xl leading-relaxed font-light text-zinc-400">
-                It is <strong class="text-zinc-100 font-normal">defense</strong>. 
-                It is <strong class="text-zinc-100 font-normal">differentiation</strong>. 
-                It is the only moat that cannot be copied overnight.
-            </p>
         </div>
     </section>
 
-    <!-- Qualification Criteria -->
-    <section class="py-24 px-6">
+    <!-- Qualification Criteria (Premium Bento Grid - Dark Theme) -->
+    <section class="py-32 px-6 bg-zinc-950">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Do You Belong Here?</h2>
-                <p class="text-zinc-500 uppercase tracking-widest text-sm">High-Stakes Environments Only</p>
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-light text-zinc-100 mb-4 tracking-tight">Do You Belong Here?</h2>
+                <p class="text-zinc-500 uppercase tracking-[0.2em] text-[11px] font-medium">High-Stakes Environments Only</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
-                    <i data-lucide="shield" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
-                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Preparing for IPO</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Your company needs institutional-grade brand architecture that can withstand intense public market scrutiny.
-                    </p>
+            <!-- Bento Grid Layout: 3 Columns, explicit auto-row heights for perfect ratios -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:auto-rows-[360px]">
+                
+                <!-- Card 1 (Wide Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="sparkles" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Building Brand<br/>From Scratch</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="w-full">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">RAVE – Hydration Drink</h4>
+                            <p class="text-[14px] font-light text-zinc-300 leading-relaxed">
+                                "A new brand entering a crowded hydration market with no clear position. We consulted them on category creation and brand positioning — so they launched with clarity, not confusion."
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
-                    <i data-lucide="trending-up" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
-                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Valuation &gt; ₹100 Crore</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Your valuation has scaled, but your brand still looks like a startup. Investors, customers, and talent notice the gap.
-                    </p>
+                <!-- Card 2 (Tall Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 lg:row-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="shield" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Preparing<br/>For IPO</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="w-full">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Mobavenue AI Tech Limited</h4>
+                            <p class="text-[14px] font-light text-zinc-300 leading-relaxed">
+                                "A well-established company transitioning to a public listing needed more than a rebrand they needed institutional-grade brand positioning. We consulted Mobavenue on what a listed AI-tech enterprise should look, sound, and feel like to investors and global markets."
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
-                    <i data-lucide="refresh-cw" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
-                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">High-Stakes Rebrand</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        You are planning a rebrand and the stakes are too high to experiment. One wrong move costs market position, trust, and revenue.
-                    </p>
+                <!-- Card 3 (Square Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="refresh-cw" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">High Stakes<br/>Rebrand</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="w-full">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Chai Sutta Bar</h4>
+                            <p class="text-[13px] font-light text-zinc-300 leading-relaxed">
+                                "500+ outlets, multiple brand verticals, and overseas expansion — all needing one coherent brand architecture. We consulted CSB on how to scale their story across franchises, new verticals, and global markets without losing what made them iconic."
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-8 border border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 transition-colors">
-                    <i data-lucide="alert-octagon" stroke-width="1.5" class="w-8 h-8 text-zinc-100 mb-6"></i>
-                    <h3 class="text-xl text-zinc-100 mb-4 font-medium">Failed by Agencies</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Multiple agencies have failed you. You need a partner who understands business fundamentals first, and design second.
-                    </p>
+                <!-- Card 4 (Square Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="trending-up" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Started with Boom,<br/>Stuck with Scaling</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="w-full">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Gatti Chutney</h4>
+                            <p class="text-[13px] font-light text-zinc-300 leading-relaxed">
+                                "A street-side QSR that needed to move up the market. We repositioned Gatti Chutney from a fast food perception to a sub-premium dining experience — changing their visual identity, ambience direction, and communication from the ground up."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 (Square Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-1 lg:col-span-1 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-100">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="history" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Tradition to<br/>Modern Business</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="w-full">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-lg font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">Silveransh</h4>
+                            <p class="text-[13px] font-light text-zinc-300 leading-relaxed">
+                                "30 years of jewellery business, zero modern brand presence. We consulted the next generation on how to modernise the brand without losing the legacy that built it."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 (Wide Block) -->
+                <div class="group relative w-full h-[360px] lg:h-full md:col-span-2 lg:col-span-2 rounded-3xl border border-zinc-800/50 bg-zinc-900/30 hover:border-zinc-700/80 transition-all duration-700 overflow-hidden cursor-default shadow-lg hover:shadow-2xl hover:shadow-black/50 reveal anim-delay-200">
+                    <!-- Subtle background glow on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                    <!-- Front State -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-between transition-all duration-700 ease-out z-10 group-hover:-translate-y-10 group-hover:scale-95 group-hover:opacity-0">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center mb-8 transition-transform duration-700 group-hover:scale-75 group-hover:-rotate-6 shadow-inner">
+                                <i data-lucide="alert-octagon" stroke-width="1.5" class="w-6 h-6 text-zinc-100"></i>
+                            </div>
+                            <h3 class="text-xl md:text-3xl text-zinc-100 mb-4 font-light leading-snug tracking-tight">Failed by Multiple<br/>Agencies</h3>
+                        </div>
+                        <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium flex items-center gap-2">View Impact <i data-lucide="arrow-right" class="w-4 h-4"></i></p>
+                    </div>
+                    
+                    <!-- Hover Reveal State (Case Study) -->
+                    <div class="absolute inset-0 p-10 flex flex-col justify-center transition-all duration-700 ease-out translate-y-10 scale-105 opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 z-20">
+                        <div class="max-w-xl">
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">Case Study</p>
+                            <h4 class="text-xl font-medium text-zinc-100 mb-5 pb-5 border-b border-zinc-800/80">JK Shah Classes</h4>
+                            <p class="text-[14px] font-light text-zinc-300 leading-relaxed">
+                                "A legacy offline education brand with no digital footprint, preparing for a listing at a ₹500 crore valuation. We consulted them on building a credible digital brand presence that matched the scale and seriousness of the business they had already built."
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="mt-12 text-center text-sm text-zinc-500 italic">
+            <div class="mt-16 text-center text-[13px] font-light text-zinc-600 reveal">
                 If none of these apply, this consultation is not for you.
             </div>
         </div>
     </section>
 
     <!-- Anti-Pitch / Disqualification -->
-    <section class="py-24 px-6 bg-zinc-100 text-zinc-950">
+    <section class="py-24 px-6 bg-slate-50 text-slate-900 border-y border-slate-100">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-serif mb-12 text-center">What This Is Not.</h2>
+            <h2 class="text-3xl md:text-4xl font-light text-slate-800 mb-12 text-center tracking-tight reveal">What This Is Not.</h2>
             
             <div class="space-y-6">
-                <div class="flex items-start gap-4">
-                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
+                <div class="flex items-start gap-4 p-6 bg-white rounded-2xl border border-slate-200 reveal">
+                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 text-slate-400"></i>
                     <div>
-                        <h4 class="font-bold uppercase tracking-wider mb-1">Not a Sales Pitch</h4>
-                        <p class="text-zinc-700">This is a diagnostic process. We do not sell. We assess.</p>
+                        <h4 class="font-medium uppercase tracking-[0.2em] text-[11px] text-slate-500 mb-2">Not a Sales Pitch</h4>
+                        <p class="text-slate-500 font-light text-sm leading-relaxed">This is a diagnostic process. We do not sell. We assess.</p>
                     </div>
                 </div>
                 
-                <div class="flex items-start gap-4">
-                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
+                <div class="flex items-start gap-4 p-6 bg-white rounded-2xl border border-slate-200 reveal anim-delay-100">
+                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 text-slate-400"></i>
                     <div>
-                        <h4 class="font-bold uppercase tracking-wider mb-1">Not for Early-Stage</h4>
-                        <p class="text-zinc-700">Not for startups still testing product-market fit. This is for established entities.</p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                    <i data-lucide="x-circle" stroke-width="1.5" class="w-6 h-6 shrink-0 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold uppercase tracking-wider mb-1">Not Cheap or Templated</h4>
-                        <p class="text-zinc-700">Not for companies looking for fast, budget-friendly, or generic solutions.</p>
+                        <h4 class="font-medium uppercase tracking-[0.2em] text-[11px] text-slate-500 mb-2">Not for Early-Stage</h4>
+                        <p class="text-slate-500 font-light text-sm leading-relaxed">Not for startups still testing product-market fit. This is for established entities.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-16 pt-10 border-t border-zinc-300 text-center">
-                <p class="text-2xl font-serif">
-                    This is for <strong class="font-bold">Founders</strong> who know the cost of getting brand wrong.
+            <div class="mt-16 pt-10 text-center reveal">
+                <p class="text-xl md:text-2xl font-light text-slate-600 tracking-tight">
+                    This is for <span class="txt-highlight font-medium text-slate-900">Founders</span> who know the cost of getting brand wrong.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- The Framework (Animated Timeline) -->
-    <section class="py-32 px-6 overflow-hidden" id="framework-section">
-        <div class="max-w-5xl mx-auto">
-            <div class="mb-24 text-center">
-                <h2 class="text-3xl font-serif text-zinc-100 mb-4">The ABC Framework</h2>
-                <p class="text-zinc-500 uppercase tracking-widest text-sm">A diagnostic process. Not a sales process.</p>
-            </div>
+    <!-- ========================================== -->
+    <!-- UNTOUCHED ABC FRAMEWORK SECTION            -->
+    <!-- Wrapped in a dark container to preserve it -->
+    <!-- Typography updated to match global aesthetic -->
+    <!-- ========================================== -->
+    <div class="bg-zinc-950 text-zinc-300">
+        <!-- The Framework (Animated Timeline) -->
+        <section class="py-32 px-6 overflow-hidden" id="framework-section">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-24 text-center">
+                    <h2 class="text-3xl md:text-4xl font-light text-zinc-100 mb-4 tracking-tight">The ABC Framework</h2>
+                    <p class="text-zinc-400 uppercase tracking-[0.2em] text-[11px] font-medium">A diagnostic process. Not a sales process.</p>
+                </div>
 
-            <div class="relative pl-6 md:pl-0">
-                <!-- Vertical Background Line -->
-                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-800 md:-translate-x-1/2"></div>
-                <!-- Animated Progress Line -->
-                <div id="timeline-progress" class="absolute left-6 md:left-1/2 top-0 w-[2px] bg-zinc-100 md:-translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300 ease-out" style="height: 0%;"></div>
+                <div class="relative pl-6 md:pl-0">
+                    <!-- Vertical Background Line -->
+                    <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-800 md:-translate-x-1/2"></div>
+                    <!-- Animated Progress Line -->
+                    <div id="timeline-progress" class="absolute left-6 md:left-1/2 top-0 w-[2px] bg-zinc-100 md:-translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300 ease-out" style="height: 0%;"></div>
 
-                <!-- A: Audit of Brand -->
-                <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-                    
-                    <!-- Desktop Left Content (Text) -->
-                    <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
-                        <div>
-                            <i data-lucide="search" class="w-8 h-8 text-zinc-400 ml-auto mb-6"></i>
-                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Audit of Brand</h3>
-                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What we examine</p>
-                        </div>
-                    </div>
-
-                    <!-- Center Node -->
-                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
-                        A
-                    </div>
-
-                    <!-- Right Content (Card) -->
-                    <div class="w-full md:w-1/2 pl-12 md:pl-16">
-                        <!-- Mobile Text Header -->
-                        <div class="md:hidden mb-6">
-                            <i data-lucide="search" class="w-6 h-6 text-zinc-400 mb-4"></i>
-                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Audit of Brand</h3>
-                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What we examine</p>
-                        </div>
+                    <!-- A: Audit of Brand -->
+                    <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
                         
-                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
-                            <ul class="space-y-4 text-sm text-zinc-400 mb-8">
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Architecture & positioning</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Differentiation gaps</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Internal alignment vs reality</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Perception vs intention</li>
-                            </ul>
-                            <div class="pt-6 border-t border-zinc-800">
-                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Clear diagnosis. What works. What fails. What is missing.</p>
+                        <!-- Desktop Left Content (Text) -->
+                        <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
+                            <div>
+                                <i data-lucide="search" stroke-width="1.5" class="w-8 h-8 text-zinc-400 ml-auto mb-6"></i>
+                                <h3 class="text-2xl font-light text-zinc-100 mb-2 tracking-tight">Audit of Brand</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">What we examine</p>
+                            </div>
+                        </div>
+
+                        <!-- Center Node -->
+                        <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-light text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                            A
+                        </div>
+
+                        <!-- Right Content (Card) -->
+                        <div class="w-full md:w-1/2 pl-12 md:pl-16">
+                            <!-- Mobile Text Header -->
+                            <div class="md:hidden mb-6">
+                                <i data-lucide="search" stroke-width="1.5" class="w-6 h-6 text-zinc-400 mb-4"></i>
+                                <h3 class="text-xl font-light text-zinc-100 mb-1 tracking-tight">Audit of Brand</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium">What we examine</p>
+                            </div>
+                            
+                            <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
+                                <ul class="space-y-4 text-sm font-light text-zinc-400 mb-8">
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Architecture & positioning</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Differentiation gaps</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Internal alignment vs reality</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Perception vs intention</li>
+                                </ul>
+                                <div class="pt-6 border-t border-zinc-800">
+                                    <p class="text-[13px] font-light text-zinc-400"><strong class="font-medium text-zinc-200">Outcome:</strong> Clear diagnosis. What works. What fails. What is missing.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- B: Brand Brief -->
-                <div class="timeline-item relative flex flex-col md:flex-row-reverse justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-                    
-                    <!-- Desktop Right Content (Text) -->
-                    <div class="hidden md:flex md:w-1/2 justify-start pl-16 text-left">
-                        <div>
-                            <i data-lucide="file-text" class="w-8 h-8 text-zinc-400 mr-auto mb-6"></i>
-                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Brand Brief</h3>
-                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What we deliver</p>
-                        </div>
-                    </div>
-
-                    <!-- Center Node -->
-                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
-                        B
-                    </div>
-
-                    <!-- Left Content (Card) -->
-                    <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-16 md:text-right">
-                        <!-- Mobile Text Header -->
-                        <div class="md:hidden mb-6">
-                            <i data-lucide="file-text" class="w-6 h-6 text-zinc-400 mb-4"></i>
-                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Brand Brief</h3>
-                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What we deliver</p>
+                    <!-- B: Brand Brief -->
+                    <div class="timeline-item relative flex flex-col md:flex-row-reverse justify-between items-center mb-28 opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+                        
+                        <!-- Desktop Right Content (Text) -->
+                        <div class="hidden md:flex md:w-1/2 justify-start pl-16 text-left">
+                            <div>
+                                <i data-lucide="file-text" stroke-width="1.5" class="w-8 h-8 text-zinc-400 mr-auto mb-6"></i>
+                                <h3 class="text-2xl font-light text-zinc-100 mb-2 tracking-tight">Brand Brief</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">What we deliver</p>
+                            </div>
                         </div>
 
-                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors text-left">
-                            <ul class="space-y-4 text-sm text-zinc-400 mb-8 md:flex md:flex-col md:items-end">
-                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Transformation scope</li>
-                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Messaging framework</li>
-                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Visual identity direction</li>
-                                <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600 font-serif">-</span> Market implications & milestones</li>
-                            </ul>
-                            <div class="pt-6 border-t border-zinc-800">
-                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Your brand roadmap. Documented. Actionable.</p>
+                        <!-- Center Node -->
+                        <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-light text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                            B
+                        </div>
+
+                        <!-- Left Content (Card) -->
+                        <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-16 md:text-right">
+                            <!-- Mobile Text Header -->
+                            <div class="md:hidden mb-6">
+                                <i data-lucide="file-text" stroke-width="1.5" class="w-6 h-6 text-zinc-400 mb-4"></i>
+                                <h3 class="text-xl font-light text-zinc-100 mb-1 tracking-tight">Brand Brief</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium">What we deliver</p>
+                            </div>
+
+                            <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors text-left">
+                                <ul class="space-y-4 text-sm font-light text-zinc-400 mb-8 md:flex md:flex-col md:items-end">
+                                    <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600">-</span> Transformation scope</li>
+                                    <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600">-</span> Messaging framework</li>
+                                    <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600">-</span> Visual identity direction</li>
+                                    <li class="flex gap-3 md:flex-row-reverse"><span class="text-zinc-600">-</span> Market implications & milestones</li>
+                                </ul>
+                                <div class="pt-6 border-t border-zinc-800">
+                                    <p class="text-[13px] font-light text-zinc-400"><strong class="font-medium text-zinc-200">Outcome:</strong> Your brand roadmap. Documented. Actionable.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- C: Consultation -->
-                <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-                    
-                    <!-- Desktop Left Content (Text) -->
-                    <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
-                        <div>
-                            <i data-lucide="user-check" class="w-8 h-8 text-zinc-100 ml-auto mb-6"></i>
-                            <h3 class="text-2xl font-serif text-zinc-100 mb-2">Consultation</h3>
-                            <p class="text-sm uppercase tracking-wider text-zinc-500 font-bold mb-4">What happens</p>
-                        </div>
-                    </div>
-
-                    <!-- Center Node -->
-                    <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-serif text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
-                        C
-                    </div>
-
-                    <!-- Right Content (Card) -->
-                    <div class="w-full md:w-1/2 pl-12 md:pl-16">
-                        <!-- Mobile Text Header -->
-                        <div class="md:hidden mb-6">
-                            <i data-lucide="user-check" class="w-6 h-6 text-zinc-100 mb-4"></i>
-                            <h3 class="text-xl font-serif text-zinc-100 mb-1">Consultation</h3>
-                            <p class="text-xs uppercase tracking-wider text-zinc-500 font-bold">What happens</p>
+                    <!-- C: Consultation -->
+                    <div class="timeline-item relative flex flex-col md:flex-row justify-between items-center opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+                        
+                        <!-- Desktop Left Content (Text) -->
+                        <div class="hidden md:flex md:w-1/2 justify-end pr-16 text-right">
+                            <div>
+                                <i data-lucide="user-check" stroke-width="1.5" class="w-8 h-8 text-zinc-100 ml-auto mb-6"></i>
+                                <h3 class="text-2xl font-light text-zinc-100 mb-2 tracking-tight">Consultation</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium mb-4">What happens</p>
+                            </div>
                         </div>
 
-                        <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
-                            <ul class="space-y-4 text-sm text-zinc-400 mb-8">
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Personal review by Krishna Rathi</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Discussion of strategic options</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Validation of business case</li>
-                                <li class="flex gap-3"><span class="text-zinc-600 font-serif">-</span> Expert recommendation</li>
-                            </ul>
-                            <div class="pt-6 border-t border-zinc-800">
-                                <p class="text-sm"><strong class="text-zinc-200">Outcome:</strong> Clear recommendation. Full build, mentorship, or alternative path.</p>
+                        <!-- Center Node -->
+                        <div class="timeline-node absolute left-0 md:left-1/2 w-12 h-12 bg-zinc-950 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 font-light text-xl md:-translate-x-1/2 z-10 transition-colors duration-500">
+                            C
+                        </div>
+
+                        <!-- Right Content (Card) -->
+                        <div class="w-full md:w-1/2 pl-12 md:pl-16">
+                            <!-- Mobile Text Header -->
+                            <div class="md:hidden mb-6">
+                                <i data-lucide="user-check" stroke-width="1.5" class="w-6 h-6 text-zinc-100 mb-4"></i>
+                                <h3 class="text-xl font-light text-zinc-100 mb-1 tracking-tight">Consultation</h3>
+                                <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-medium">What happens</p>
+                            </div>
+
+                            <div class="bg-zinc-900/40 p-8 border border-zinc-800 hover:border-zinc-600 transition-colors">
+                                <ul class="space-y-4 text-sm font-light text-zinc-400 mb-8">
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Personal review by Krishna Rathi</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Discussion of strategic options</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Validation of business case</li>
+                                    <li class="flex gap-3"><span class="text-zinc-600">-</span> Expert recommendation</li>
+                                </ul>
+                                <div class="pt-6 border-t border-zinc-800">
+                                    <p class="text-[13px] font-light text-zinc-400"><strong class="font-medium text-zinc-200">Outcome:</strong> Clear recommendation. Full build, mentorship, or alternative path.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+    <!-- ========================================== -->
 
-    <!-- Strategic Investment (Bento Grid) -->
-    <section class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+    <!-- Investment (Bento Grid) -->
+    <section class="py-24 px-6 bg-slate-50 border-t border-slate-200">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Strategic Investment</h2>
-                <p class="text-zinc-500 uppercase tracking-widest text-sm">The parameters of engagement</p>
+            <div class="mb-16 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-tight">Investment</h2>
+                <p class="text-slate-400 uppercase tracking-[0.2em] text-[11px] font-medium">The parameters of engagement</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Diagnostic Step (Large Block) -->
-                <div class="md:col-span-2 bg-zinc-100 text-zinc-950 p-10 md:p-14 flex flex-col justify-center">
-                    <h3 class="text-2xl md:text-3xl font-serif mb-6">A Diagnostic Step</h3>
-                    <p class="text-zinc-700 leading-relaxed mb-8 text-lg md:text-xl">
+                <div class="md:col-span-2 bg-slate-900 text-white p-10 md:p-14 rounded-3xl flex flex-col justify-center reveal">
+                    <h3 class="text-2xl md:text-3xl font-light mb-6 tracking-tight">A Diagnostic Step</h3>
+                    <p class="text-slate-300 font-light leading-relaxed mb-8 text-lg md:text-xl">
                         This is a diagnostic consultation. If we determine FourTwo is the right partner for your transformation, a separate engagement proposal follows.
                     </p>
-                    <p class="text-sm font-bold uppercase tracking-widest text-zinc-500">
+                    <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">
                         We work with businesses where brand decisions carry consequences.
                     </p>
                 </div>
 
                 <!-- Timeline (Small Block) -->
-                <div class="bg-zinc-900/30 border border-zinc-800 p-8 flex flex-col justify-center">
-                    <i data-lucide="clock" class="w-6 h-6 text-zinc-500 mb-8"></i>
-                    <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-3">Timeline</h4>
-                    <p class="text-2xl font-serif text-zinc-100 mb-2">7 - 14 Days</p>
-                    <p class="text-sm text-zinc-400">from commencement.</p>
-                    <div class="mt-8 pt-6 border-t border-zinc-800">
-                        <p class="text-xs text-zinc-500 italic">Waiting Period applies due to limited availability.</p>
+                <div class="bg-white rounded-3xl border border-slate-200 p-8 flex flex-col justify-center shadow-sm reveal anim-delay-100">
+                    <i data-lucide="clock" stroke-width="1.5" class="w-6 h-6 text-slate-900 mb-8"></i>
+                    <h4 class="text-[11px] uppercase tracking-[0.2em] text-slate-400 mb-3 font-medium">Timeline</h4>
+                    <p class="text-3xl font-light text-slate-800 mb-2 tracking-tight">7 - 14 Days</p>
+                    <p class="text-sm font-light text-slate-500">from commencement.</p>
+                    <div class="mt-8 pt-6 border-t border-slate-100">
+                        <p class="text-xs font-light leading-snug"><span class="txt-highlight font-medium">Waiting Period applies due to limited availability.</span></p>
                     </div>
                 </div>
 
                 <!-- Format (Small Block) -->
-                <div class="bg-zinc-900/30 border border-zinc-800 p-8 flex flex-col justify-center">
-                    <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-6">Consultation Format</h4>
+                <div class="bg-white rounded-3xl border border-slate-200 p-8 flex flex-col justify-center shadow-sm reveal anim-delay-200">
+                    <h4 class="text-[11px] uppercase tracking-[0.2em] text-slate-400 mb-6 font-medium">Consultation Format</h4>
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <i data-lucide="globe" class="w-5 h-5 text-zinc-400 shrink-0 mt-0.5"></i>
-                            <p class="text-zinc-300 text-sm leading-relaxed">Private online consultations for founders across India, Dubai, Singapore, and global markets.</p>
+                            <i data-lucide="globe" stroke-width="1.5" class="w-5 h-5 text-slate-900 shrink-0 mt-0.5"></i>
+                            <p class="text-slate-500 font-light text-sm leading-relaxed">Private online consultations for founders across India, Dubai, Singapore, and global markets.</p>
                         </div>
                         <div class="flex items-start gap-4">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-zinc-400 shrink-0 mt-0.5"></i>
-                            <p class="text-zinc-300 text-sm leading-relaxed">Exclusive one-to-one sessions available in Pune by appointment only.</p>
+                            <i data-lucide="map-pin" stroke-width="1.5" class="w-5 h-5 text-slate-900 shrink-0 mt-0.5"></i>
+                            <p class="text-slate-500 font-light text-sm leading-relaxed">Exclusive one-to-one sessions available in Pune by appointment only.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Investment (Large Block) -->
-                <div class="md:col-span-2 bg-zinc-900/50 border border-zinc-800 p-10 md:p-14 flex flex-col justify-center relative overflow-hidden group hover:bg-zinc-900/80 transition-colors">
-                    <div class="absolute -right-12 -bottom-12 opacity-[0.03] transition-transform duration-700 group-hover:scale-110">
-                        <i data-lucide="briefcase" class="w-80 h-80"></i>
+                <div class="md:col-span-2 bg-white rounded-3xl border border-slate-200 p-10 md:p-14 flex flex-col justify-center relative overflow-hidden group hover:border-slate-300 transition-colors shadow-sm reveal">
+                    <div class="absolute -right-12 -bottom-12 opacity-[0.02] transition-transform duration-700 group-hover:scale-110">
+                        <i data-lucide="briefcase" stroke-width="1" class="w-80 h-80 text-slate-900"></i>
                     </div>
                     <div class="relative z-10">
-                        <h4 class="text-xs uppercase tracking-widest text-zinc-500 mb-6">Investment</h4>
-                        <p class="text-zinc-300 mb-8 max-w-xl text-lg md:text-xl leading-relaxed">
+                        <h4 class="text-[11px] uppercase tracking-[0.2em] text-slate-400 mb-6 font-medium">Investment Structure</h4>
+                        <p class="text-slate-600 font-light mb-8 max-w-xl text-lg md:text-xl leading-relaxed">
                             The consultation fee is variable and depends on business complexity, audit scope, and strategic depth required.
                         </p>
-                        <div class="inline-block border-l-2 border-zinc-100 pl-6 py-2">
-                            <p class="text-2xl font-serif text-zinc-100">Fee communicated after initial review.</p>
+                        <div class="flex flex-col md:flex-row md:items-end gap-6 md:gap-12">
+                            <div class="inline-block border-l-2 border-slate-900 pl-6 py-2">
+                                <p class="text-xs uppercase tracking-[0.2em] text-slate-400 font-medium mb-1">Consultation fee starts from</p>
+                                <p class="text-3xl md:text-4xl font-light text-slate-800 tracking-tight">Rs. 1 Lakh <span class="text-lg text-slate-400">Onwards</span></p>
+                            </div>
+                            <p class="text-[11px] font-medium uppercase tracking-[0.15em] text-[#40E0D0] bg-[#40E0D0]/10 px-4 py-2 rounded-full inline-block self-start">
+                                Exact fee communicated after initial review
+                            </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Card Section (Designer Profile - Borderless Editorial Layout) -->
+    <section class="py-32 px-6 bg-white relative overflow-hidden flex justify-center">
+        <div class="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-16 lg:gap-24 reveal relative z-10">
+            <!-- Profile Image (Borderless Canvas Style) -->
+            <div class="lg:w-1/2 w-full max-w-md shrink-0 relative group">
+                <!-- Extremely subtle soft shadow mimicking physical light -->
+                <div class="w-full aspect-[4/5] rounded-[2rem] overflow-hidden bg-slate-50 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3 group-hover:shadow-[0_60px_100px_-20px_rgba(0,0,0,0.12)]">
+                    <img src="https://res.cloudinary.com/dj159rgsr/image/upload/v1768854091/ChatGPT_Image_Jan_20_2026_01_46_22_AM_hrobyf.png" alt="Krishna Rathi" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105">
+                    
+                    <!-- Inner delicate overlay for depth -->
+                    <div class="absolute inset-0 border border-white/20 rounded-[2rem] mix-blend-overlay pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Content side -->
+            <div class="lg:w-1/2 w-full text-center lg:text-left flex flex-col items-center lg:items-start">
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-light text-slate-900 mb-8 tracking-tight leading-[1.05]">
+                    Krishna <br class="hidden lg:block"/><span class="font-medium text-slate-800">Rathi</span>
+                </h2>
+                
+                <p class="text-slate-500 font-light leading-relaxed mb-12 text-lg md:text-xl max-w-xl">
+                    Building a brand at scale is rarely about adding more elements; it is almost entirely about engineering extreme clarity. I help founders deconstruct their brand's past, present, and future to bulletproof it for the next phase of scale.
+                </p>
+
+                <!-- Minimalist Social Links -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-8">
+                    <a href="https://www.linkedin.com/in/rathikrishna42/" target="_blank" class="group flex flex-col items-center lg:items-start gap-2">
+                        <div class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 transition-all duration-500 group-hover:border-slate-900 group-hover:bg-slate-900 group-hover:text-white group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
+                            <i data-lucide="linkedin" stroke-width="1.5" class="w-5 h-5 transition-transform duration-500 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-800 transition-colors">LinkedIn</span>
+                    </a>
+                    <a href="https://www.instagram.com/rathikrishna42/?hl=en" target="_blank" class="group flex flex-col items-center lg:items-start gap-2">
+                        <div class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 transition-all duration-500 group-hover:border-slate-900 group-hover:bg-slate-900 group-hover:text-white group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
+                            <i data-lucide="instagram" stroke-width="1.5" class="w-5 h-5 transition-transform duration-500 group-hover:scale-110"></i>
+                        </div>
+                        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-800 transition-colors">Instagram</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Application Form -->
-    <section id="request-form" class="py-24 px-6 relative">
+    <section id="request-form" class="py-24 px-6 relative bg-slate-50 border-t border-slate-100">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif text-zinc-100 mb-4">Request a Consultation</h2>
-                <p class="text-zinc-400">Reviewed within 48 hours. If accepted, you receive confirmation with fee, timeline, and next steps.</p>
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-tight">Request a Consultation</h2>
+                <p class="text-slate-500 font-light">Reviewed within 48 hours. If accepted, you receive confirmation with fee, timeline, and next steps.</p>
             </div>
 
             <!-- Success Message (Hidden by default) -->
-            <div id="success-message" class="hidden bg-zinc-900/50 border border-zinc-800 p-12 text-center">
-                <i data-lucide="check-circle-2" stroke-width="1" class="w-16 h-16 text-zinc-100 mx-auto mb-6"></i>
-                <h3 class="text-2xl font-serif text-zinc-100 mb-4">Request Received</h3>
-                <p class="text-zinc-400">Your information has been securely submitted. Our team will review your details and respond within 48 hours.</p>
+            <div id="success-message" class="hidden bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-sm">
+                <i data-lucide="check-circle-2" stroke-width="1.5" class="w-16 h-16 text-emerald-500 mx-auto mb-6"></i>
+                <h3 class="text-2xl md:text-3xl font-light text-slate-800 mb-4 tracking-tight">Request Received</h3>
+                <p class="text-slate-500 font-light">Your information has been securely submitted. Our team will review your details and respond within 48 hours.</p>
             </div>
 
             <!-- Form -->
-            <div id="form-container">
-                <form id="consultation-form" class="space-y-6">
+            <div id="form-container" class="reveal anim-delay-100">
+                <form id="consultation-form" class="space-y-6 bg-white p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-sm">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Full Name</label>
-                            <input required type="text" name="name" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                            <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Full Name</label>
+                            <input required type="text" name="name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all" />
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Work Email</label>
-                            <input required type="email" name="email" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                            <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Work Email</label>
+                            <input required type="email" name="email" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all" />
                         </div>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Company Name</label>
-                            <input required type="text" name="company" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors" />
+                            <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Company Name</label>
+                            <input required type="text" name="company" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all" />
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm text-zinc-400 uppercase tracking-wider">Current Valuation / ARR</label>
-                            <input required type="text" name="valuation" placeholder="e.g. ₹100Cr+ / $15M" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700" />
+                            <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Current Valuation / ARR</label>
+                            <input required type="text" name="valuation" placeholder="e.g. ₹100Cr+ / $15M" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all placeholder:text-slate-400" />
                         </div>
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-sm text-zinc-400 uppercase tracking-wider">Reason for Consultation</label>
-                        <textarea required name="reason" rows="4" placeholder="What is the high-stakes brand challenge you are facing?" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700 resize-none"></textarea>
+                        <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Reason for Consultation</label>
+                        <textarea required name="reason" rows="4" placeholder="What is the high-stakes brand challenge you are facing?" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all placeholder:text-slate-400 resize-none"></textarea>
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-sm text-zinc-400 uppercase tracking-wider">Timeline & Stakeholders</label>
-                        <input required type="text" name="timeline" placeholder="Who is involved and what is your desired timeline?" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-none px-4 py-3 text-zinc-100 focus:outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700" />
+                        <label class="text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em]">Timeline & Stakeholders</label>
+                        <input required type="text" name="timeline" placeholder="Who is involved and what is your desired timeline?" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 font-light text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all placeholder:text-slate-400" />
                     </div>
 
-                    <button id="submit-btn" type="submit" class="w-full bg-zinc-100 text-zinc-950 py-4 font-bold uppercase tracking-widest text-sm hover:bg-zinc-300 transition-colors disabled:opacity-50">
+                    <button id="submit-btn" type="submit" class="w-full bg-black text-white py-4 rounded-xl font-medium text-sm hover:bg-slate-800 transition-all disabled:opacity-50 shadow-md mt-4">
                         Submit Request
                     </button>
                     
-                    <p class="text-center text-xs text-zinc-600 uppercase tracking-widest mt-4">
-                        This consultation is selective.
-                    </p>
+                    <div class="text-center mt-6">
+                        <span class="text-[11px] uppercase tracking-[0.2em] text-slate-500 font-medium">
+                            <span class="txt-highlight font-semibold">This consultation is selective.</span>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-900 py-12 px-6 text-center">
-        <h2 class="text-2xl font-serif text-zinc-500 mb-8 italic">
+    <footer class="border-t border-slate-200 py-12 px-6 text-center bg-white">
+        <h2 class="text-xl md:text-2xl font-light text-slate-500 mb-8 tracking-tight reveal">
             "If you belong here, you know it."
         </h2>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-zinc-600 uppercase tracking-wider">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-[11px] font-medium text-slate-400 uppercase tracking-[0.2em] reveal anim-delay-100">
             <span>42 Creative Media Pvt. Ltd.</span>
-            <span class="hidden md:inline">•</span>
+            <span class="hidden md:inline text-slate-300">•</span>
             <span>Pune, India</span>
-            <span class="hidden md:inline">•</span>
+            <span class="hidden md:inline text-slate-300">•</span>
             <span>Global Consultations Available</span>
         </div>
     </footer>
@@ -452,12 +725,77 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
         // Smooth scroll to form
         function scrollToForm() {
             document.getElementById('request-form').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Timeline Scroll Animation Logic
+        // ----------------------------------------------------
+        // Counter Animation Logic for Stats Grid
+        // ----------------------------------------------------
+        const counters = document.querySelectorAll('.counter');
+        const counterOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps approx
+
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                    observer.unobserve(counter);
+                }
+            });
+        }, counterOptions);
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ----------------------------------------------------
+        // Premium Reveal on Scroll Animation Logic
+        // ----------------------------------------------------
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px', // Triggers slightly before element enters fully
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Unobserve to animate only once
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ----------------------------------------------------
+        // ABC Framework Timeline Scroll Animation Logic (UNTOUCHED)
+        // ----------------------------------------------------
         const timelineProgress = document.getElementById('timeline-progress');
         const frameworkSection = document.getElementById('framework-section');
 
@@ -481,13 +819,13 @@
 
         // Intersection Observer for Timeline Node & Content Reveal
         const timelineItems = document.querySelectorAll('.timeline-item');
-        const observerOptions = {
+        const timelineObserverOptions = {
             root: null,
             rootMargin: '0px 0px -25% 0px', // Trigger slightly before it hits the bottom
             threshold: 0.1
         };
 
-        const timelineObserver = new IntersectionObserver((entries, observer) => {
+        const timelineNodeObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // Reveal content
@@ -507,10 +845,10 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, timelineObserverOptions);
 
         timelineItems.forEach(item => {
-            timelineObserver.observe(item);
+            timelineNodeObserver.observe(item);
         });
 
         // Handle form submission state
